@@ -18,7 +18,7 @@ The `Pair` contract implements the specific lending protocol logic. It includes 
 External users create a trading pair `Pair` contract by calling the `deploy` function of the `Vault` contract. However, the `deploy` function does not validate the legitimacy of the `tokenCollateral` and `oracle` passed by the external user. In other words, users can pass any fake token and manipulate the `exchangeRate` through the `oracle`.
 ![img.png](img1.jpeg)
 
-There is also a serious issue in the implementation of the `Pair` contract. The `liquidate()` method allows the function caller to specify **any liquidator** to execute the liquidation of the collateral. This is problematic because it introduces the potential for malicious actors to arbitrarily choose liquidators, which can lead to the enforcement of liquidation procedures.
+There is also a serious issue in the implementation of the `Pair` contract. The `liquidate()` method allows the function caller to specify **any liquidator** to execute the liquidation of the collateral. This is problematic because the liquidation process should be initiated by the liquidator themselves, rather than allowing malicious actors to arbitrarily choose liquidators.
 ![img.png](img2.jpeg)
 
 ### Reproduction Steps
